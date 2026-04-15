@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --brand: #4c6be8;
+    --snow: #fffafa;
+    --text-muted: rgba(0, 0, 0, 0.4);
+    --border-color: #f3f3f3;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased selection:bg-brand selection:text-white;
+    font-family: 'Inter Tight', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    /* Headers in Website 2 are very bold and tight */
+    @apply font-bold tracking-tight;
+    font-family: 'Inter Tight', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* WEBSITE 2 SIGNATURE STYLE */
+  .editorial-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
+  .blur-reveal {
+    animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes blurReveal {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+  }
+}
