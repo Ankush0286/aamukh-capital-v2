@@ -47,19 +47,38 @@ export default function CorePhilosophySection() {
         
         {/* Section Header */}
         <div className="flex flex-col items-center w-full border-t border-border pt-16 md:pt-24 gap-6">
-          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white border border-border shadow-sm">
+          <motion.div
+            className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white border border-border shadow-sm"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-8%' }}
+            transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+          >
             <span className="font-mono text-xs font-semibold tracking-widest text-brand uppercase">
               The Aamukh Way
             </span>
-          </div>
+          </motion.div>
 
-          <h2 className="font-geom font-medium text-4xl md:text-5xl lg:text-6xl text-center leading-[1.1] tracking-[-0.04em] text-text-primary text-balance max-w-4xl">
-            Fixing the broken model of <br className="hidden md:block"/> 
+          <motion.h2
+            className="font-geom font-medium text-4xl md:text-5xl lg:text-6xl text-center leading-[1.1] tracking-[-0.04em] text-text-primary text-balance max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
+          >
+            Fixing the broken model of <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-300">traditional investing.</span>
-          </h2>
-          <p className="font-geom text-lg md:text-xl text-text-secondary text-center max-w-[45rem] mt-2 leading-relaxed">
+          </motion.h2>
+
+          <motion.p
+            className="font-geom text-lg md:text-xl text-text-secondary text-center max-w-[45rem] mt-2 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
+          >
             Eliminating fee-driven motives, delayed FOMO execution, and misaligned incentives to bring structured, belief-driven capital exactly when it's needed.
-          </p>
+          </motion.p>
         </div>
 
         {/* Interactive Content Block */}

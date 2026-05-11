@@ -35,7 +35,7 @@ const HeroSection = () => {
           </span>
         </motion.div>
 
-        <h1 className="w-full text-text-primary font-sans font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-[clamp(3.2rem,8vw,8.5rem)] mb-10 drop-shadow-sm">
+        <h1 className="w-full text-text-primary font-sans font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-[clamp(2.6rem,6.5vw,7rem)] mb-10 drop-shadow-sm">
           <span className="block blur-reveal" style={{ animationDelay: '0.1s' }}>
             The Future of <br className="hidden md:block" />
           </span>

@@ -8,7 +8,6 @@ const portfolio = [
   {
     id: 'gudgudi',
     name: 'Gudgudi',
-    // Place these images in your public folder (e.g. public/portfolio/gudgudi-1.jpg)
     images: [
       '/goodgudi1.png', 
       '/goodgudi2.png',
@@ -36,7 +35,6 @@ const portfolio = [
   },
 ];
 
-// Sub-component for the auto-sliding images
 const CompanyImageSlider = ({ images, isActive }: { images: string[], isActive: boolean }) => {
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -44,7 +42,7 @@ const CompanyImageSlider = ({ images, isActive }: { images: string[], isActive: 
     if (!isActive) return;
     const interval = setInterval(() => {
       setImgIndex((prev) => (prev + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
     return () => clearInterval(interval);
   }, [isActive, images.length]);
 
@@ -61,7 +59,6 @@ const CompanyImageSlider = ({ images, isActive }: { images: string[], isActive: 
           className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
-      {/* Dark overlays to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-10" />
     </div>
   );
@@ -81,14 +78,12 @@ export default function PipelineShowcaseSection() {
   return (
     <section id="portfolio" className="w-full bg-snow py-[10rem] px-6 lg:px-10 flex flex-col items-center border-t border-border/50 overflow-hidden relative">
       
-      {/* Background Decor */}
       <div className="absolute top-[10%] right-[-5%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[#4C6BE8]/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="max-w-[100rem] w-full mx-auto flex flex-col items-center gap-10 md:gap-14 z-10">
         
-        {/* Header Block */}
+        {/* Header Block - Simplified */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full gap-8 border-b border-border pb-12">
-          
           <div className="flex flex-col items-start gap-6 max-w-3xl">
             <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white border border-border shadow-sm">
               <span className="font-mono text-xs font-semibold tracking-widest text-[#4C6BE8] uppercase">
@@ -104,92 +99,104 @@ export default function PipelineShowcaseSection() {
             </h2>
           </div>
 
-          <div className="flex flex-col items-start md:items-end gap-8">
-            <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md md:text-right">
-              We invest across sectors, looking for conviction where others see risk. These are the founders we back.
-            </p>
-            
-            <div className="flex gap-3">
-              <button onClick={prevSlide} className="w-12 h-12 flex items-center justify-center rounded-full border border-border bg-white hover:bg-background-secondary text-text-primary transition-all active:scale-95">
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button onClick={nextSlide} className="w-12 h-12 flex items-center justify-center rounded-full border border-border bg-white hover:bg-background-secondary text-text-primary transition-all active:scale-95">
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+          <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md md:text-right">
+            We invest across sectors, looking for conviction where others see risk. These are the founders we back.
+          </p>
         </div>
 
-        {/* Showcase Area */}
-        <div className="w-full bg-white rounded-card md:rounded-[2rem] p-4 lg:p-6 border border-border/80 shadow-sm min-h-[600px] flex items-center overflow-hidden relative">
+        {/* Showcase Area - With Obvious Side Navigation */}
+        <div className="relative w-full group">
           
-          <div className="w-full h-full flex-grow relative overflow-hidden flex min-h-[550px]">
-            {portfolio.map((company, index) => {
-              const isActive = index === currentIndex;
-              
-              return (
-                <div 
-                  key={company.id}
-                  className={`absolute inset-0 w-full h-full flex flex-col lg:flex-row gap-8 lg:gap-16 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
-                    ${isActive ? "opacity-100 translate-x-0 z-10" : "opacity-0 translate-x-12 -z-10"}
-                  `}
-                >
-                  
-                  {/* LEFT SIDE: Full-Bleed Auto-Sliding Images */}
-                  <div className="w-full lg:w-[50%] h-[350px] lg:h-auto relative rounded-2xl overflow-hidden shadow-inner group">
-                    <CompanyImageSlider images={company.images} isActive={isActive} />
+          {/* Obvious Navigation Arrows - Positioned on edges */}
+          <div className="absolute top-1/2 -left-4 md:-left-8 -translate-y-1/2 z-30 hidden sm:block">
+            <button 
+              onClick={prevSlide} 
+              className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-white border border-border shadow-xl text-text-primary hover:text-[#4C6BE8] hover:scale-110 transition-all active:scale-95 group/btn"
+              aria-label="Previous portfolio company"
+            >
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8 group-hover/btn:-translate-x-0.5 transition-transform" />
+            </button>
+          </div>
 
-                    {/* Tags Overlaid on top of image */}
-                    <div className="absolute top-8 left-8 z-20 flex gap-3">
-                      <span className="font-mono text-[10px] font-bold text-white uppercase tracking-widest bg-[#4C6BE8]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-                        {company.category}
-                      </span>
-                      <span className="font-mono text-[10px] font-bold text-white uppercase tracking-widest bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                        {company.status}
-                      </span>
+          <div className="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 z-30 hidden sm:block">
+            <button 
+              onClick={nextSlide} 
+              className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-white border border-border shadow-xl text-text-primary hover:text-[#4C6BE8] hover:scale-110 transition-all active:scale-95 group/btn"
+              aria-label="Next portfolio company"
+            >
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8 group-hover/btn:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
+          {/* Main Card Container */}
+          <div className="w-full bg-white rounded-card md:rounded-[2rem] p-4 lg:p-6 border border-border/80 shadow-sm min-h-[600px] flex items-center overflow-hidden relative">
+            
+            <div className="w-full h-full flex-grow relative overflow-hidden flex min-h-[550px]">
+              {portfolio.map((company, index) => {
+                const isActive = index === currentIndex;
+                
+                return (
+                  <div 
+                    key={company.id}
+                    className={`absolute inset-0 w-full h-full flex flex-col lg:flex-row gap-8 lg:gap-16 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+                      ${isActive ? "opacity-100 translate-x-0 z-10" : "opacity-0 translate-x-12 -z-10"}
+                    `}
+                  >
+                    
+                    {/* LEFT SIDE: Image Slider */}
+                    <div className="w-full lg:w-[50%] h-[350px] lg:h-auto relative rounded-2xl overflow-hidden shadow-inner group">
+                      <CompanyImageSlider images={company.images} isActive={isActive} />
+
+                      <div className="absolute top-8 left-8 z-20 flex gap-3">
+                        <span className="font-mono text-[10px] font-bold text-white uppercase tracking-widest bg-[#4C6BE8]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                          {company.category}
+                        </span>
+                        <span className="font-mono text-[10px] font-bold text-white uppercase tracking-widest bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                          {company.status}
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-8 left-8 z-20">
+                        <p className="font-mono text-xs text-[#4C6BE8] font-bold uppercase tracking-widest mb-2 drop-shadow-md">
+                          {company.type}
+                        </p>
+                        <h3 className="font-sans text-4xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg">
+                          {company.name}
+                        </h3>
+                      </div>
                     </div>
 
-                    {/* Name/Type Overlaid on bottom of image */}
-                    <div className="absolute bottom-8 left-8 z-20">
-                      <p className="font-mono text-xs text-[#4C6BE8] font-bold uppercase tracking-widest mb-2 drop-shadow-md">
-                        {company.type}
+                    {/* RIGHT SIDE: Content */}
+                    <div className="w-full lg:w-[50%] flex flex-col justify-center py-4 lg:py-12 pr-6">
+                      <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed mb-10 max-w-2xl border-b border-border/60 pb-10">
+                        {company.description}
                       </p>
-                      <h3 className="font-sans text-4xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg">
-                        {company.name}
-                      </h3>
+
+                      <div className="mb-12">
+                        <h4 className="font-mono text-xs font-semibold tracking-widest text-[#4C6BE8] uppercase mb-6">
+                          Traction & Execution
+                        </h4>
+                        <ul className="grid gap-4">
+                          {company.highlights.map((highlight, i) => (
+                            <li key={i} className="flex items-start gap-4">
+                              <CheckCircle className="w-5 h-5 text-[#4C6BE8] shrink-0 mt-0.5" />
+                              <span className="font-sans text-[1.1rem] text-text-primary font-medium">{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="mt-auto">
+                        <a href={`#case-study-${company.id}`} className="inline-flex items-center gap-2 font-mono text-sm font-semibold uppercase tracking-wider text-[#4C6BE8] group">
+                          View Complete Case Study
+                          <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                        </a>
+                      </div>
                     </div>
                   </div>
-
-                  {/* RIGHT SIDE: Details */}
-                  <div className="w-full lg:w-[50%] flex flex-col justify-center py-4 lg:py-12 pr-6">
-                    <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed mb-10 max-w-2xl border-b border-border/60 pb-10">
-                      {company.description}
-                    </p>
-
-                    <div className="mb-12">
-                      <h4 className="font-mono text-xs font-semibold tracking-widest text-[#4C6BE8] uppercase mb-6">
-                        Traction & Execution
-                      </h4>
-                      <ul className="grid gap-4">
-                        {company.highlights.map((highlight, i) => (
-                          <li key={i} className="flex items-start gap-4">
-                            <CheckCircle className="w-5 h-5 text-[#4C6BE8] shrink-0 mt-0.5" />
-                            <span className="font-sans text-[1.1rem] text-text-primary font-medium">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mt-auto">
-                      <a href={`#case-study-${company.id}`} className="inline-flex items-center gap-2 font-mono text-sm font-semibold uppercase tracking-wider text-[#4C6BE8] group">
-                        View Complete Case Study
-                        <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 

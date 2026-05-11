@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image'; // Import Next Image
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const NavigationSection = () => {
@@ -9,25 +10,30 @@ const NavigationSection = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-3 mt-4 lg:px-6">
-        <nav className="flex items-center justify-between bg-white/80 w-full rounded-full p-[0.3rem] pl-[0.9rem] shadow-sm border border-border backdrop-blur-md">
-          
-          {/* LOCAL NEXT IMAGE FOR LOGO */}
-          <a href="/" className="relative h-9 w-40 z-10 block transition-transform hover:scale-105 duration-300">
-            <Image 
-              src="/logo.png" 
-              alt="Aamukh Capital Logo" 
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 mt-4 lg:px-6"
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 2.6, ease: [0.19, 1, 0.22, 1] }}
+      >
+        <nav className="relative flex items-center justify-between bg-white w-full max-w-6xl rounded-full p-[0.3rem] pl-[0.9rem] shadow-sm border border-border">
+
+          {/* Logo — left */}
+          <a href="/" className="relative h-9 w-40 block transition-transform hover:scale-105 duration-300 shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Aamukh Capital Logo"
               fill
               priority
               className="object-contain object-left mix-blend-multiply"
             />
           </a>
 
-          {/* Desktop Links */}
+          {/* Desktop Links — absolutely centered inside the pill */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {['Thesis', 'Programs', 'Portfolio', 'Collective'].map((link) => (
-              <a 
-                key={link} 
+              <a
+                key={link}
                 href={`#${link.toLowerCase()}`}
                 className="text-sm font-sans font-medium text-text-secondary hover:text-brand transition-colors duration-300"
               >
@@ -36,18 +42,17 @@ const NavigationSection = () => {
             ))}
           </div>
 
-          {/* CTA & Mobile Toggle Container */}
-          <div className="flex items-center gap-2 z-10">
-            <a 
-              href="#apply" 
+          {/* CTA / Mobile toggle — right */}
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="#apply"
               className="hidden md:flex items-center justify-center gap-2 px-5 py-2.5 h-10 bg-[#4C6BE8] text-white rounded-full text-sm font-sans font-semibold hover:bg-brand-600 transition-all active:scale-95 group"
             >
               Join Syndicate
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
-            {/* Mobile Menu Toggle */}
-            <button 
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-background-secondary text-text-primary hover:bg-border transition-colors"
               aria-label="Toggle menu"
@@ -56,7 +61,7 @@ const NavigationSection = () => {
             </button>
           </div>
         </nav>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Overlay */}
       {isOpen && (

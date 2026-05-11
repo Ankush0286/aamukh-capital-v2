@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { AreaChart, Area, ResponsiveContainer, XAxis, Tooltip } from 'recharts';
 
 const data = [
@@ -22,8 +23,14 @@ const MarketVisionSection = () => {
   return (
     <section className="w-full bg-snow pb-[8rem] px-6 lg:px-10 flex flex-col items-center">
       <div className="max-w-[100rem] w-full mx-auto flex flex-col items-center">
-        
-        <div className="w-full relative h-[400px] md:h-[500px] rounded-card md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50">
+
+        <motion.div
+          className="w-full relative h-[400px] md:h-[500px] rounded-card md:rounded-[2rem] overflow-hidden shadow-sm border border-border/50"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-8%' }}
+          transition={{ duration: 0.85, ease: [0.19, 1, 0.22, 1] }}
+        >
             <Image 
               src="/vision-bg.png" 
               alt="Architecture background" 
@@ -63,7 +70,7 @@ const MarketVisionSection = () => {
                  )}
               </div>
             </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -14,15 +14,18 @@ import FlywheelModelSection from '@/components/FlywheelModelSection';
 import TeamExpertiseSection from '@/components/TeamExpertiseSection';
 import CallToActionSection from '@/components/CallToActionSection';
 import FooterSection from '@/components/FooterSection';
+import PageLoader from '@/components/PageLoader';
 
 export default function Home() {
   return (
+    <>
+      <PageLoader />
     <main className="relative min-h-screen w-full overflow-x-hidden bg-snow selection:bg-brand selection:text-white">
       <NavigationSection />
       
       {/* 1. THE HOOK */}
       <HeroSection />
-      <MarqueeSection baseVelocity={-30} scrollSensitivity={0.5} />
+      <MarqueeSection baseVelocity={-90} scrollSensitivity={0.5} />
       
       {/* 2. THE CONTEXT (Breather) */}
       <ValuePropositionSection />
@@ -61,5 +64,6 @@ export default function Home() {
       
       <FooterSection />
     </main>
+    </>
   );
 }

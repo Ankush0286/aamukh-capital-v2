@@ -10,15 +10,27 @@ const FlywheelModelSection = () => {
 
         {/* Section Header */}
         <div className="flex flex-col items-center w-full border-t border-border pt-16 md:pt-24 gap-6 text-center mb-16 lg:mb-24">
-          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white border border-border shadow-sm">
+          <motion.div
+            className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white border border-border shadow-sm"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-8%' }}
+            transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+          >
             <span className="font-mono text-xs font-semibold tracking-widest text-brand uppercase">
               The Methodology
             </span>
-          </div>
+          </motion.div>
 
-          <h2 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.04em] text-text-primary uppercase">
+          <motion.h2
+            className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.04em] text-text-primary uppercase"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
+          >
             The Aamukh <span className="editorial-italic lowercase tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-300">Flywheel</span>
-          </h2>
+          </motion.h2>
         </div>
 
         {/* --- Interactive Desktop Layout --- */}
