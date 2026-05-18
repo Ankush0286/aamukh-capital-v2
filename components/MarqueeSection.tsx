@@ -5,7 +5,7 @@ import React, { useRef, useState, useLayoutEffect, memo, useEffect } from 'react
 import { useScroll, useVelocity } from 'framer-motion';
 
 interface MarqueeProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   baseVelocity: number;
   scrollSensitivity?: number;
   className?: string;
@@ -78,13 +78,13 @@ const MarqueeSection = ({
   const marqueeContent = (
     <div className="flex items-center gap-10 font-geom text-[clamp(2.5rem,6vw,5rem)] font-medium tracking-tight uppercase text-text-primary px-5">
       <span>Founder-First</span>
-      <span className="text-[#4C6BE8] text-4xl drop-shadow-sm">✦</span>
+      <span className="text-brand text-4xl">✦</span>
       <span>India's Supercycle</span>
-      <span className="text-[#4C6BE8] text-4xl drop-shadow-sm">✦</span>
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4C6BE8] to-[#869CE9]">Conviction Capital</span>
-      <span className="text-[#4C6BE8] text-4xl drop-shadow-sm">✦</span>
+      <span className="text-brand text-4xl">✦</span>
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-300">Conviction Capital</span>
+      <span className="text-brand text-4xl">✦</span>
       <span>Dual Engine</span>
-      <span className="text-[#4C6BE8] text-4xl drop-shadow-sm">✦</span>
+      <span className="text-brand text-4xl">✦</span>
     </div>
   );
 
@@ -99,7 +99,7 @@ const MarqueeSection = ({
   useMarqueeAnimation(trackRef, seqWidth, baseVelocity, scrollSensitivity);
 
   return (
-    <section className={`w-full overflow-hidden py-6 md:py-10 bg-[#F5F7FF] border-y border-[#4C6BE8]/20 shadow-sm ${className}`}>
+    <section className={`w-full overflow-hidden py-12 md:py-20 bg-snow border-y border-border/60 ${className}`}>
       <div
         ref={trackRef}
         className="flex whitespace-nowrap will-change-transform"
